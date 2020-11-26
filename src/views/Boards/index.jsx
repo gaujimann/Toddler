@@ -4,6 +4,7 @@ import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import AddModal from '../../components/AddModal';
+import { takePhoto } from '../../services/imageServices';
 
 class Boards extends React.Component {
   constructor() {
@@ -55,8 +56,10 @@ class Boards extends React.Component {
       </Text>
     );
   }
-  takePhoto() {
 
+  async takePhoto() {
+    const photo = await takePhoto();
+    console.log(photo);
   }
   selectFromCameraRoll() {
 
