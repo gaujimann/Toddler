@@ -6,4 +6,10 @@ export default StyleSheet.create({
     height: 115,
     margin: 10,
   },
+  checkmark: {
+    position: 'absolute',
+    bottom: 15,
+    left: 15,
+    fontSize: 16,
+  }
 });
