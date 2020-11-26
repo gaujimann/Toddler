@@ -4,6 +4,7 @@ import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import AddModal from '../../components/AddModal';
+import DeleteModal from '../../components/deleteModal';
 
 class Boards extends React.Component {
   constructor() {
@@ -63,11 +64,12 @@ class Boards extends React.Component {
   }
 
   render() {
-    const { selectedBoards, boards, isAddModelOpen } = this.state;
+    const { selectedBoards, boards, isAddModelOpen, isDeleteModalOpen } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
           onAdd={() => this.setState({isAddModelOpen: true})}
+          onRemove={() => this.setState({isDeleteModalOpen: true})}
           hasSelctedBoards={selectedBoards.length > 0} />
         { this.displayCaption() }
         <BoardList
@@ -80,6 +82,10 @@ class Boards extends React.Component {
           closeModal={() => this.setState({ isAddModelOpen: false })}
           takePhoto={() => this.takePhoto()}
           selectFromCameraRoll={() => this.selectFromCameraRoll()}
+        />
+        <DeleteModal
+          isOpen={isDeleteModalOpen}
+          closeModal={() => this.setState({ isDeleteModalOpen: false })}
         />
       </View>
     );

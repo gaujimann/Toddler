@@ -6,6 +6,6 @@ export default StyleSheet.create({
     padding: 20,
     backgroundColor: '#f8717f',
     alignItems: 'center',
-    justifyContent: 'space-around'
-  }
-})
+    justifyContent: 'space-around',
+  },
+});
