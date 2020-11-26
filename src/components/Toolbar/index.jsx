@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, TouchableHighlight, Text } from 'react-native';
 import styles from './styles';
 
@@ -19,5 +20,11 @@ const Toolbar = ({ onAdd, onRemove, hasSelctedBoards }) => (
     </TouchableHighlight>
   </View>
 );
+
+Toolbar.propTypes = {
+  onAdd: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
+  hasSelctedBoards: PropTypes.bool.isRequired,
+};
 
 export default Toolbar;

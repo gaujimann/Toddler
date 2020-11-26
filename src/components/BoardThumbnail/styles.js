@@ -6,6 +6,12 @@ export default StyleSheet.create({
     height: 115,
     margin: 10,
   },
+  boardName: {
+    width: 115,
+    textAlign: 'center',
+    marginLeft: 10,
+    marginRight: 10,
+  },
   checkmark: {
     position: 'absolute',
     bottom: 15,
