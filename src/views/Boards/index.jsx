@@ -4,7 +4,6 @@ import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import AddModal from '../../components/AddModal';
-import { takePhoto } from '../../services/imageServices';
 import DeleteModal from '../../components/deleteModal';
 
 class Boards extends React.Component {
@@ -14,6 +13,7 @@ class Boards extends React.Component {
       boards: data.boards,
       selectedBoards: [],
       isAddModelOpen: false,
+      nextId: 4,
     };
   }
 
@@ -58,13 +58,16 @@ class Boards extends React.Component {
     );
   }
 
-  async takePhoto() {
-    const photo = await takePhoto();
-    console.log(photo);
-  }
-
-  selectFromCameraRoll() {
-
+  addBoard(name, photo) {
+    const { boards, nextId } = this.state;
+    this.setState({
+      boards: [...boards, {
+        id: nextId,
+        name,
+        thumbnailPhoto: photo,
+      }],
+      nextId: nextId + 1,
+    })
   }
 
   remove() {
@@ -94,8 +97,7 @@ class Boards extends React.Component {
         <AddModal
           isOpen={isAddModelOpen}
           closeModal={() => this.setState({ isAddModelOpen: false })}
-          takePhoto={() => this.takePhoto()}
-          selectFromCameraRoll={() => this.selectFromCameraRoll()}
+          addBoard={(name, photo) => this.addBoard(name, photo)}
         />
         <DeleteModal
           isOpen={isDeleteModalOpen}

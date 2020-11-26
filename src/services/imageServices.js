@@ -15,7 +15,7 @@ export const takePhoto = async () => {
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
     quality: 0.8,
     base64: true,
-    aspect: [16,9],
+    aspect: [16, 9],
   })
   if (result.cancelled) { return ''; }
   return result.uri;
