@@ -62,8 +62,18 @@ class Boards extends React.Component {
     const photo = await takePhoto();
     console.log(photo);
   }
+
   selectFromCameraRoll() {
 
+  }
+
+  remove() {
+    const { selectedBoards, boards } = this.state;
+    const newBoards = boards.reduce(
+      (acc, board) => (selectedBoards.includes(board.id) ? acc : [...acc, board]),
+      [],
+    );
+    this.setState({ boards: newBoards, selectedBoards: [] });
   }
 
   render() {
@@ -71,9 +81,10 @@ class Boards extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
-          onAdd={() => this.setState({isAddModelOpen: true})}
-          onRemove={() => this.setState({isDeleteModalOpen: true})}
-          hasSelctedBoards={selectedBoards.length > 0} />
+          onAdd={() => this.setState({ isAddModelOpen: true })}
+          onRemove={() => this.setState({ isDeleteModalOpen: true })}
+          hasSelectedBoards={selectedBoards.length > 0}
+        />
         { this.displayCaption() }
         <BoardList
           onLongPress={(id) => this.onBoardLongPress(id)}
@@ -89,6 +100,7 @@ class Boards extends React.Component {
         <DeleteModal
           isOpen={isDeleteModalOpen}
           closeModal={() => this.setState({ isDeleteModalOpen: false })}
+          remove={() => this.remove()}
         />
       </View>
     );
