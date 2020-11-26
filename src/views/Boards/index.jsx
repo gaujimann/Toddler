@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
+import AddModal from '../../components/AddModal';
 
 class Boards extends React.Component {
   constructor() {
@@ -10,6 +11,7 @@ class Boards extends React.Component {
     this.state = {
       boards: data.boards,
       selectedBoards: [],
+      isAddModelOpen: false,
     };
   }
 
@@ -53,17 +55,31 @@ class Boards extends React.Component {
       </Text>
     );
   }
+  takePhoto() {
+
+  }
+  selectFromCameraRoll() {
+
+  }
 
   render() {
-    const { selectedBoards, boards } = this.state;
+    const { selectedBoards, boards, isAddModelOpen } = this.state;
     return (
       <View style={{ flex: 1 }}>
-        <Toolbar hasSelctedBoards={selectedBoards.length > 0} />
+        <Toolbar
+          onAdd={() => this.setState({isAddModelOpen: true})}
+          hasSelctedBoards={selectedBoards.length > 0} />
         { this.displayCaption() }
         <BoardList
           onLongPress={(id) => this.onBoardLongPress(id)}
           boards={boards}
           selectedBoards={selectedBoards}
+        />
+        <AddModal
+          isOpen={isAddModelOpen}
+          closeModal={() => this.setState({ isAddModelOpen: false })}
+          takePhoto={() => this.takePhoto()}
+          selectFromCameraRoll={() => this.selectFromCameraRoll()}
         />
       </View>
     );
