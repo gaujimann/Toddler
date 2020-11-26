@@ -13,7 +13,7 @@ const Modal = ({ isOpen, closeModal, title, children }) => (
     swipeDirection={['up', 'down']}
     style={styles.modal}
   >
-    <View styel={styles.body}>
+    <View style={styles.body}>
       <Text>{ title }</Text>
       { children }
     </View>

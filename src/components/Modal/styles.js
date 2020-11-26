@@ -17,5 +17,6 @@ export default StyleSheet.create({
     width: winWidth - 100,
     backgroundColor: 'white',
     padding: 40,
+    position: 'absolute',
   }
 });
