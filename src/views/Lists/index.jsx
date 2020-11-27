@@ -33,8 +33,6 @@ class Lists extends React.Component {
   render() {
     const { selectedLists, lists, isAddListOpen, isDeleteListOpen } = this.state;
     const { boardId } = this.props.navigation.state.params;
-    console.log(this.props);
-    console.log(boardId);
     return (
       <View style={{ flex: 1 }}>
         <Toolbar />
