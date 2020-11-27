@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
-import data from '../../resources/data.json';
 import AddBoardModal from '../../components/AddBoardModal';
 import DeleteModal from '../../components/deleteModal';
+import EditBoardModal from '../../components/EditBoardModal';
 import styles from './styles';
 import ProjectsContext from '../../services/PrejectsContext';
 
@@ -13,8 +13,6 @@ class Boards extends React.Component {
     super(props);
     this.state = {
       selectedBoards: [],
-      isAddModelOpen: false,
-      isDeleteModalOpen: false,
     };
   }
 
@@ -61,7 +59,7 @@ class Boards extends React.Component {
 
   render() {
     const {
-      selectedBoards, isAddModelOpen, isDeleteModalOpen
+      selectedBoards, isAddModelOpen, isDeleteModalOpen, isEditBoardModalOpen
     } = this.state;
     const { navigation } = this.props;
     return (
@@ -71,7 +69,8 @@ class Boards extends React.Component {
             <Toolbar
               onAdd={() => this.setState({ isAddModelOpen: true })}
               onRemove={() => this.setState({ isDeleteModalOpen: true })}
-              hasSelected={selectedBoards.length > 0}
+              onEdit={() => this.setState({ isEditBoardModalOpen: true })}
+              numSelected={selectedBoards.length}
             />
             { this.displayCaption() }
             <BoardList
@@ -85,14 +84,18 @@ class Boards extends React.Component {
             <AddBoardModal
               isOpen={isAddModelOpen}
               closeModal={() => this.setState({ isAddModelOpen: false })}
-              addBoard={(name, photo) => updateProjects({
-                boards: [...boards, {
-                  id: nextBoardId,
-                  name,
-                  thumbnailPhoto: photo,
-                }],
-                nextBoardId: nextBoardId + 1,
-              })}
+              addBoard={(name, photo) => {
+                if (name === '' || photo === '') {
+                  return;
+                }
+                updateProjects({
+                  boards: [...boards, {
+                    id: nextBoardId,
+                    name,
+                    thumbnailPhoto: photo,
+                  }],
+                  nextBoardId: nextBoardId + 1,
+                })}}
             />
             <DeleteModal
               isOpen={isDeleteModalOpen}
@@ -105,6 +108,26 @@ class Boards extends React.Component {
                 this.setState({ selectedBoards: [] });
                 updateProjects({ boards: newBoards })
               }}
+            />
+            <EditBoardModal
+              isOpen={isEditBoardModalOpen}
+              closeModal={() => this.setState({ isEditBoardModalOpen: false })}
+              edit={(name, photo) => {
+                if (name === '' || photo === '') {
+                  return;
+                }
+                const newBoards = boards.map(
+                  (board) => (board.id === selectedBoards[0] ? {
+                    id: board.id,
+                    name,
+                    thumbnailPhoto: photo,
+                  } : board),
+                );
+                this.setState({ selectedBoards: [] });
+                updateProjects({ boards: [...newBoards] });
+              }}
+              currentName={selectedBoards.length === 1 ? boards.find((board) => board.id === selectedBoards[0]).name : ''}
+              currentPhoto={selectedBoards.length === 1 ? boards.find((board) => board.id === selectedBoards[0]).thumbnailPhoto : ''}
             />
           </View>
         )}

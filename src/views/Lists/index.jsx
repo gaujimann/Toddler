@@ -42,7 +42,7 @@ class Lists extends React.Component {
             <Toolbar
               onAdd={() => this.setState({ isAddModelOpen: true })}
               onRemove={() => this.setState({ isDeleteModalOpen: true})}
-              hasSelected={selectedLists.length > 0}
+              numSelected={selectedLists.length}
             />
             <ListsList
               onLongPress={(id) => this.onListLongPress(id)}
