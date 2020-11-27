@@ -19,7 +19,7 @@ class Lists extends React.Component {
     const { selectedLists, lists, isAddListOpen, isDeleteListOpen } = this.state;
     return (
       <View>
-        <Toolbar/>
+        <Toolbar />
         <ListsList
           onLongPress={(id) => this.onBoardLongPress(id)}
           lists={lists}

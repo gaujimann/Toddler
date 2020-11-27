@@ -9,14 +9,15 @@ const ListsList = ({lists, onLongPress, selectedLists}) => (
       // numColumns={1}
       data={lists}
       extraData={selectedLists}
-      renderItem={({ item: { id, name, color, boardId } }) => (
-        <ListThumbnail
-          id={id}
-          name={name}
-          color={color}
-          onLongPress={onLongPress}
-          isSelected={selectedLists.indexOf(id) !== -1}
-        />
+      renderItem={({ item: {
+        id, name, color, boardId } }) => (
+          <ListThumbnail
+            id={id}
+            name={name}
+            color={color}
+            onLongPress={onLongPress}
+            isSelected={selectedLists.indexOf(id) !== -1}
+          />
       )}
       keyExtractor={(list) => list.id}
     />
