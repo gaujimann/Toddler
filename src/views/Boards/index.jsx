@@ -59,6 +59,10 @@ class Boards extends React.Component {
   }
 
   addBoard(name, photo) {
+    console.log('name of User', name, ' :::::: here is the photo value', photo);
+    if (name === '' || photo === '') {
+      return;
+    }
     const { boards, nextId } = this.state;
     this.setState({
       boards: [...boards, {
