@@ -12,11 +12,12 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginLeft: 10,
     marginRight: 10,
+    fontWeight: 'bold',
   },
   checkmark: {
     position: 'absolute',
-    bottom: 15,
-    left: 15,
+    bottom: 50,
+    left: 58,
     fontSize: 16,
   }
 });

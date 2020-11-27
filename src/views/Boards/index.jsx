@@ -74,7 +74,7 @@ class Boards extends React.Component {
     })
   }
 
-  remove() {
+  removeBoard() {
     const { selectedBoards, boards } = this.state;
     const newBoards = boards.reduce(
       (acc, board) => (selectedBoards.includes(board.id) ? acc : [...acc, board]),
@@ -109,7 +109,7 @@ class Boards extends React.Component {
         <DeleteModal
           isOpen={isDeleteModalOpen}
           closeModal={() => this.setState({ isDeleteModalOpen: false })}
-          remove={() => this.remove()}
+          remove={() => this.removeBoard()}
         />
       </View>
     );
