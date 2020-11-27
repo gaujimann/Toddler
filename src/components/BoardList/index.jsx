@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList, TouchableOpacity } from 'react-native';
+import { View, FlatList} from 'react-native';
 import BoardThumbnail from '../BoardThumbnail';
 
 const BoardList = ({ boards, onLongPress, onPress, selectedBoards }) => (
