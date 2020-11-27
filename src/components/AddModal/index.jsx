@@ -13,8 +13,9 @@ const AddModal = ({ isOpen, closeModal, addBoard }) => {
   return (
     <Modal
       isOpen={isOpen}
-      closeModal={closeModal}>
-      <TouchableOpacity>
+      closeModal={closeModal}
+    >
+      <TouchableOpacity style={styles.textInput}>
         <NameTextInput
           value={value}
           setValue={setValue}
@@ -33,17 +34,22 @@ const AddModal = ({ isOpen, closeModal, addBoard }) => {
       <TouchableOpacity onPress={selectFromCameraRoll}>
         <Entypo style={styles.icon} name="image" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => {
-        addBoard(value, photo);
-        setPhoto('');
-        setValue('')
-        closeModal();
-      }}>
-        <Text>OK</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={closeModal}>
-        <Text>Cancel</Text>
-      </TouchableOpacity>
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => {
+            addBoard(value, photo);
+            setPhoto('');
+            setValue('')
+            closeModal();
+          }}
+          style={[styles.button, styles.acceptView]}
+        >
+          <Text style={styles.textAccept}>OK</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={closeModal} style={styles.button}>
+          <Text style={styles.textCancel}>Cancel</Text>
+        </TouchableOpacity>
+      </View>
 
     </Modal>
   );
