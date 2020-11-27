@@ -6,14 +6,13 @@ import ListsList from '../../components/ListsList';
 import AddListModal from '../../components/AddListModal';
 import DeleteModal from '../../components/deleteModal';
 import ProjectsContext from '../../services/PrejectsContext';
+import EditListModal from '../../components/EditListModal';
 
 class Lists extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedLists: [],
-      isAddModelOpen: false,
-      isDeleteModalOpen: false,
     };
   }
 
@@ -33,7 +32,7 @@ class Lists extends React.Component {
   }
 
   render() {
-    const { selectedLists, isAddModelOpen, isDeleteModalOpen } = this.state;
+    const { selectedLists, isAddModelOpen, isDeleteModalOpen, isEditListModalOpen } = this.state;
     const { boardId } = this.props.navigation.state.params;
     return (
       <ProjectsContext.Consumer>
@@ -42,6 +41,7 @@ class Lists extends React.Component {
             <Toolbar
               onAdd={() => this.setState({ isAddModelOpen: true })}
               onRemove={() => this.setState({ isDeleteModalOpen: true})}
+              onEdit={() => this.setState({ isEditListModalOpen: true })}
               numSelected={selectedLists.length}
             />
             <ListsList
@@ -72,6 +72,25 @@ class Lists extends React.Component {
                 );
                 this.setState({ selectedLists: [] })
                 updateProjects({ lists: newLists })
+              }}
+            />
+            <EditListModal
+              isOpen={isEditListModalOpen}
+              closeModal={() => this.setState({ isEditListModalOpen: false})}
+              edit={(name, color) => {
+                if (name === '' || color === '') {
+                  return;
+                }
+                const newLists = lists.map(
+                  (list) => (list.id === selectedLists[0] ? {
+                    id: list.id,
+                    name,
+                    color,
+                    boardId,
+                  } : list),
+                );
+                this.setState({ selectedLists: [] })
+                updateProjects({ lists: [...newLists] })
               }}
             />
           </View>
