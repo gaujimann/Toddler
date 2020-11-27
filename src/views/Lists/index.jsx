@@ -15,6 +15,7 @@ class Lists extends React.Component {
       selectedLists: [],
       isAddModelOpen: false,
       isDeleteModalOpen: false,
+      nextId: 9,
     };
   }
 
@@ -33,8 +34,29 @@ class Lists extends React.Component {
     }
   }
 
-  addList() {
-    console.log("BLABLABLA");
+  addList(name, color) {
+    if (name === '' || color === '') {
+      return;
+    }
+    const { nextId, lists } = this.state;
+    const { boardId, setState } = this.props.navigation.state.params;
+    setState({
+      lists: [...lists, {
+        is: nextId,
+        name,
+        color,
+        boardId,
+      }],
+    });
+    this.setState({
+      lists: [...lists, {
+        id: nextId,
+        name,
+        color,
+        boardId,
+      }],
+      nextId: nextId + 1,
+    });
   }
 
   removeList() {
