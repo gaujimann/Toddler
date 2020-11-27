@@ -15,8 +15,8 @@ const ListThumbnail = ({
         ? <AntDesign name="checkcircleo" style={styles.checkmark} />
         : <></>
     }
-    <View style={{ opacity: isSelected ? 0.5 : 1 }}>
-      <Text style={styles.boardName}>{name}</Text>
+    <View style={[{ opacity: isSelected ? 0.5 : 1 }, { backgroundColor: color }]}>
+      <Text style={styles.listName}>{name}</Text>
     </View>
   </TouchableOpacity>
 );
