@@ -5,12 +5,15 @@ import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import AddModal from '../../components/AddModal';
 import DeleteModal from '../../components/deleteModal';
+import styles from './styles';
 
 class Boards extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       boards: data.boards,
+      lists: data.lists,
+      tasks: data.tasks,
       selectedBoards: [],
       isAddModelOpen: false,
       nextId: 4,
@@ -84,14 +87,16 @@ class Boards extends React.Component {
   }
 
   render() {
-    const { selectedBoards, boards, isAddModelOpen, isDeleteModalOpen } = this.state;
-    const {navigation} = this.props;
+    const {
+      selectedBoards, boards, lists, isAddModelOpen, isDeleteModalOpen
+    } = this.state;
+    const { navigation } = this.props;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <Toolbar
           onAdd={() => this.setState({ isAddModelOpen: true })}
           onRemove={() => this.setState({ isDeleteModalOpen: true })}
-          hasSelectedBoards={selectedBoards.length > 0}
+          hasSelected={selectedBoards.length > 0}
         />
         { this.displayCaption() }
         <BoardList
@@ -99,8 +104,12 @@ class Boards extends React.Component {
           boards={boards}
           selectedBoards={selectedBoards}
           onPress={(id) => {
-            console.log(id);
-            navigation.navigate('Lists', { boardId: id })}}
+            navigation.navigate('Lists', {
+               boardId: id,
+               lists,
+               setState: (state) => this.setState(state),
+             });
+          }}
         />
         <AddModal
           isOpen={isAddModelOpen}

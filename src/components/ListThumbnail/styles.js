@@ -3,12 +3,6 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width: winWidth } = Dimensions.get('window');
 
 export default StyleSheet.create({
-  list: {
-    width: winWidth,
-    height: 115,
-    margin: 10,
-    borderRadius: 100,
-  },
   listName: {
     width: winWidth,
     textAlign: 'center',
@@ -21,7 +15,7 @@ export default StyleSheet.create({
   },
   checkmark: {
     position: 'absolute',
-    bottom: 15,
+    bottom: 12,
     left: 15,
     fontSize: 16,
   }
