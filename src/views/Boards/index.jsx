@@ -6,17 +6,15 @@ import data from '../../resources/data.json';
 import AddBoardModal from '../../components/AddBoardModal';
 import DeleteModal from '../../components/deleteModal';
 import styles from './styles';
+import ProjectsContext from '../../services/PrejectsContext';
 
 class Boards extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      boards: data.boards,
-      lists: data.lists,
-      tasks: data.tasks,
       selectedBoards: [],
       isAddModelOpen: false,
-      nextId: 4,
+      isDeleteModalOpen: false,
     };
   }
 
@@ -61,67 +59,56 @@ class Boards extends React.Component {
     );
   }
 
-  addBoard(name, photo) {
-    //no photo or name input given
-    if (name === '' || photo === '') {
-      return;
-    }
-    const { boards, nextId } = this.state;
-    this.setState({
-      boards: [...boards, {
-        id: nextId,
-        name,
-        thumbnailPhoto: photo,
-      }],
-      nextId: nextId + 1,
-    })
-  }
-
-  removeBoard() {
-    const { selectedBoards, boards } = this.state;
-    const newBoards = boards.reduce(
-      (acc, board) => (selectedBoards.includes(board.id) ? acc : [...acc, board]),
-      [],
-    );
-    this.setState({ boards: newBoards, selectedBoards: [] });
-  }
-
   render() {
     const {
-      selectedBoards, boards, lists, isAddModelOpen, isDeleteModalOpen
+      selectedBoards, isAddModelOpen, isDeleteModalOpen
     } = this.state;
     const { navigation } = this.props;
     return (
-      <View style={styles.container}>
-        <Toolbar
-          onAdd={() => this.setState({ isAddModelOpen: true })}
-          onRemove={() => this.setState({ isDeleteModalOpen: true })}
-          hasSelected={selectedBoards.length > 0}
-        />
-        { this.displayCaption() }
-        <BoardList
-          onLongPress={(id) => this.onBoardLongPress(id)}
-          boards={boards}
-          selectedBoards={selectedBoards}
-          onPress={(id) => {
-            navigation.navigate('Lists', {
-               boardId: id,
-               lists,
-               setState: (state) => this.setState(state),
-             });
-          }}
-        />
-        <AddBoardModal
-          isOpen={isAddModelOpen}
-          closeModal={() => this.setState({ isAddModelOpen: false })}
-          addBoard={(name, photo) => this.addBoard(name, photo)}
-        />
-        <DeleteModal
-          isOpen={isDeleteModalOpen}
-          closeModal={() => this.setState({ isDeleteModalOpen: false })}
-          remove={() => this.removeBoard()}
-        />
-      </View>
+      <ProjectsContext.Consumer>
+        {({ projects: { boards, nextBoardId }, updateProjects }) => (
+          <View style={styles.container}>
+            <Toolbar
+              onAdd={() => this.setState({ isAddModelOpen: true })}
+              onRemove={() => this.setState({ isDeleteModalOpen: true })}
+              hasSelected={selectedBoards.length > 0}
+            />
+            { this.displayCaption() }
+            <BoardList
+              onLongPress={(id) => this.onBoardLongPress(id)}
+              boards={boards}
+              selectedBoards={selectedBoards}
+              onPress={(id) => {
+                navigation.navigate('Lists', { boardId: id });
+              }}
+            />
+            <AddBoardModal
+              isOpen={isAddModelOpen}
+              closeModal={() => this.setState({ isAddModelOpen: false })}
+              addBoard={(name, photo) => updateProjects({
+                boards: [...boards, {
+                  id: nextBoardId,
+                  name,
+                  thumbnailPhoto: photo,
+                }],
+                nextBoardId: nextBoardId + 1,
+              })}
+            />
+            <DeleteModal
+              isOpen={isDeleteModalOpen}
+              closeModal={() => this.setState({ isDeleteModalOpen: false })}
+              remove={() => {
+                const newBoards = boards.reduce(
+                  (acc, board) => (selectedBoards.includes(board.id) ? acc : [...acc, board]),
+                  [],
+                );
+                this.setState({ selectedBoards: [] });
+                updateProjects({ boards: newBoards })
+              }}
+            />
+          </View>
+        )}
+      </ProjectsContext.Consumer>
     );
   }
 }
