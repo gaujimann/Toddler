@@ -5,6 +5,7 @@ import Toolbar from '../../components/Toolbar';
 import ListsList from '../../components/ListsList';
 import AddListModal from '../../components/AddListModal';
 import DeleteModal from '../../components/deleteModal';
+import EditListModal from '../../components/EditListModal';
 
 class Lists extends React.Component {
   constructor(props) {
@@ -70,15 +71,33 @@ class Lists extends React.Component {
     this.setState({ lists: newLists, selectedLists: [] })
   }
 
+  editList(name, color) {
+    if (name === '' || color === '') {
+      return;
+    }
+    const { nextId, lists, selectedLists } = this.state;
+    const { boardId, setState } = this.props.navigation.state.params;
+    const newLists = lists.map(
+      (list) => (list.id === selectedLists[0] ? {
+        id: list.id,
+        name,
+        color,
+        boardId,
+      } : list),
+    );
+    this.setState({ lists: [...newLists], selectedLists: [] })
+  }
+
   render() {
-    const { lists, selectedLists, isAddModelOpen, isDeleteModalOpen } = this.state;
+    const { lists, selectedLists, isAddModelOpen, isDeleteModalOpen, isEditListModalOpen } = this.state;
     const { boardId } = this.props.navigation.state.params;
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
           onAdd={() => this.setState({ isAddModelOpen: true })}
-          onRemove={() => this.setState({ isDeleteModalOpen: true})}
-          hasSelected={selectedLists.length > 0}
+          onRemove={() => this.setState({ isDeleteModalOpen: true })}
+          onEdit={() => this.setState({ isEditListModalOpen: true })}
+          numSelected={selectedLists.length}
         />
         <ListsList
           onLongPress={(id) => this.onListLongPress(id)}
@@ -94,6 +113,11 @@ class Lists extends React.Component {
           isOpen={isDeleteModalOpen}
           closeModal={() => this.setState({ isDeleteModalOpen: false })}
           remove={() => this.removeList()}
+        />
+        <EditListModal
+          isOpen={isEditListModalOpen}
+          closeModal={() => this.setState({ isEditListModalOpen: false})}
+          edit={(name, color) => this.editList(name, color)}
         />
       </View>
     );

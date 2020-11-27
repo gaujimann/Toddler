@@ -100,7 +100,6 @@ class Boards extends React.Component {
       } : board),
     );
     this.setState({ boards: [...newBoards], selectedBoards: [] });
-    console.log(newBoards)
   }
 
   render() {

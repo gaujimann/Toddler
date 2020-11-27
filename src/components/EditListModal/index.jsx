@@ -4,7 +4,9 @@ import Modal from '../Modal';
 import NameTextInput from '../TextInputName';
 import styles from './styles';
 
-const AddListModal = ({ isOpen, closeModal, addList }) => {
+const EditListModal = ({
+ isOpen, closeModal, edit, currentName, currentColor
+}) => {
   const [name, setName] = React.useState('');
   const [color, setColor] = React.useState('');
 
@@ -13,24 +15,31 @@ const AddListModal = ({ isOpen, closeModal, addList }) => {
       isOpen={isOpen}
       closeModal={closeModal}
     >
+      <View style={{
+        borderStyle: 'solid',
+        borderBottomColor: '#000',
+        borderBottomWidth: 1,
+        paddingHorizontal: 10,
+      }}
+      >
+        <Text style={styles.captionText}>Edit List</Text>
+      </View>
       <TouchableOpacity style={[styles.textInput, styles.bottomLine]}>
         <NameTextInput
           value={name}
           setValue={setName}
-          placeHolder="Enter List Name"
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.textInput}>
         <NameTextInput
           value={color}
           setValue={setColor}
-          placeHolder="Enter Color Code"
         />
       </TouchableOpacity>
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => {
-            addList(name, color);
+            edit(name, color);
             setName('');
             setColor('');
             closeModal();
@@ -47,4 +56,4 @@ const AddListModal = ({ isOpen, closeModal, addList }) => {
   )
 }
 
-export default AddListModal;
+export default EditListModal;
