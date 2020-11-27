@@ -1,6 +1,6 @@
 import React from 'react';
 import { Entypo } from '@expo/vector-icons';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import Modal from '../Modal';
 import styles from './styles';
 import NameTextInput from '../TextInputName';
@@ -20,7 +20,9 @@ const AddModal = ({ isOpen, closeModal, addBoard }) => {
           setValue={setValue}
         />
       </TouchableOpacity>
-      <Text>Board thumbail</Text>
+      <View style={styles.caption}>
+        <Text style={styles.captionText}>Board thumbail</Text>
+      </View>
       <TouchableOpacity onPress={async () => {
         const p = await takePhoto();
         setPhoto(p);
