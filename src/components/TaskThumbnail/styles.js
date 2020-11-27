@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width: winWidth } = Dimensions.get('window');
 
 export default StyleSheet.create({
-  listName: {
+  taskName: {
     width: winWidth,
     textAlign: 'center',
     padding: 10,
@@ -18,5 +18,5 @@ export default StyleSheet.create({
     bottom: 12,
     left: 15,
     fontSize: 16,
-  },
+  }
 });

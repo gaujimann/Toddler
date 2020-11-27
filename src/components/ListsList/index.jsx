@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, FlatList} from 'react-native';
 import ListThumbnail from '../ListThumbnail';
 
-const ListsList = ({lists, onLongPress, selectedLists }) => (
+const ListsList = ({lists, onLongPress, onPress, selectedLists }) => (
   <View style={{ flex: 1 }}>
     <FlatList
       numColumns={1}
@@ -15,6 +15,7 @@ const ListsList = ({lists, onLongPress, selectedLists }) => (
           name={name}
           color={color}
           onLongPress={onLongPress}
+          onPress={onPress}
           isSelected={selectedLists.indexOf(id) !== -1}
         />
       )}

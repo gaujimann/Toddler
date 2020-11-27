@@ -34,6 +34,7 @@ class Lists extends React.Component {
   render() {
     const { selectedLists, isAddModelOpen, isDeleteModalOpen, isEditListModalOpen } = this.state;
     const { boardId } = this.props.navigation.state.params;
+    const { navigation } = this.props;
     return (
       <ProjectsContext.Consumer>
         {({ projects: { lists, nextListId }, updateProjects }) => (
@@ -48,6 +49,10 @@ class Lists extends React.Component {
               onLongPress={(id) => this.onListLongPress(id)}
               lists={lists.filter((list) => list.boardId === boardId)}
               selectedLists={selectedLists}
+              onPress={(id) => {
+                console.log("Blurg")
+                navigation.navigate('Tasks', { listId: id });
+              }}
             />
             <AddListModal
               isOpen={isAddModelOpen}
