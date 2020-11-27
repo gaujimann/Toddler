@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, TouchableOpacity } from 'react-native';
 import BoardThumbnail from '../BoardThumbnail';
 
-const BoardList = ({ boards, onLongPress, selectedBoards }) => (
+const BoardList = ({ boards, onLongPress, onPress, selectedBoards }) => (
   <View style={{ flex: 1 }}>
     <FlatList
       numColumns={3}
@@ -15,6 +15,7 @@ const BoardList = ({ boards, onLongPress, selectedBoards }) => (
           name={name}
           thumbnailPhoto={thumbnailPhoto}
           onLongPress={onLongPress}
+          onPress={onPress}
           isSelected={selectedBoards.indexOf(id) !== -1}
         />
       )}

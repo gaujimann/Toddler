@@ -34,7 +34,7 @@ const AddModal = ({ isOpen, closeModal, addBoard }) => {
       <TouchableOpacity onPress={() => {
         addBoard(value, photo);
         setPhoto('');
-        setValue('')
+        setValue('');
         closeModal();
       }}>
         <Text>OK</Text>

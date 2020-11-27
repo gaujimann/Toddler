@@ -7,8 +7,8 @@ import AddModal from '../../components/AddModal';
 import DeleteModal from '../../components/deleteModal';
 
 class Boards extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       boards: data.boards,
       selectedBoards: [],
@@ -59,7 +59,7 @@ class Boards extends React.Component {
   }
 
   addBoard(name, photo) {
-    console.log('name of User', name, ' :::::: here is the photo value', photo);
+    //no photo or name input given
     if (name === '' || photo === '') {
       return;
     }
@@ -85,6 +85,7 @@ class Boards extends React.Component {
 
   render() {
     const { selectedBoards, boards, isAddModelOpen, isDeleteModalOpen } = this.state;
+    const {navigation} = this.props;
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
@@ -97,6 +98,8 @@ class Boards extends React.Component {
           onLongPress={(id) => this.onBoardLongPress(id)}
           boards={boards}
           selectedBoards={selectedBoards}
+          onPress={(id) => {
+            navigation.navigate('Lists', { id })}}
         />
         <AddModal
           isOpen={isAddModelOpen}

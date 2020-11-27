@@ -7,9 +7,9 @@ import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
 const BoardThumbnail = ({
-  id, name, thumbnailPhoto, onLongPress, isSelected,
+  id, name, thumbnailPhoto, onLongPress, onPress, isSelected,
 }) => (
-  <TouchableOpacity activeOpacity={0.8} onLongPress={() => onLongPress(id)}>
+  <TouchableOpacity activeOpacity={0.8} onLongPress={() => onLongPress(id)} onPress={() => onPress(id)}>
     {
       isSelected
         ? <AntDesign name="checkcircleo" style={styles.checkmark} />
