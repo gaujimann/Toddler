@@ -1,6 +1,6 @@
 import React from 'react';
 import { Entypo } from '@expo/vector-icons';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import Modal from '../Modal';
 import styles from './styles';
 import NameTextInput from '../TextInputName';
@@ -13,14 +13,17 @@ const AddModal = ({ isOpen, closeModal, addBoard }) => {
   return (
     <Modal
       isOpen={isOpen}
-      closeModal={closeModal}>
-      <TouchableOpacity>
+      closeModal={closeModal}
+    >
+      <TouchableOpacity style={styles.textInput}>
         <NameTextInput
           value={value}
           setValue={setValue}
         />
       </TouchableOpacity>
-      <Text>Board thumbail</Text>
+      <View style={styles.caption}>
+        <Text style={styles.captionText}>Board thumbail</Text>
+      </View>
       <TouchableOpacity onPress={async () => {
         const p = await takePhoto();
         setPhoto(p);
@@ -31,17 +34,22 @@ const AddModal = ({ isOpen, closeModal, addBoard }) => {
       <TouchableOpacity onPress={selectFromCameraRoll}>
         <Entypo style={styles.icon} name="image" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => {
-        addBoard(value, photo);
-        setPhoto('');
-        setValue('');
-        closeModal();
-      }}>
-        <Text>OK</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={closeModal}>
-        <Text>Cancel</Text>
-      </TouchableOpacity>
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => {
+            addBoard(value, photo);
+            setPhoto('');
+            setValue('')
+            closeModal();
+          }}
+          style={[styles.button, styles.acceptView]}
+        >
+          <Text style={styles.textAccept}>OK</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={closeModal} style={styles.button}>
+          <Text style={styles.textCancel}>Cancel</Text>
+        </TouchableOpacity>
+      </View>
 
     </Modal>
   );

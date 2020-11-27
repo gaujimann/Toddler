@@ -27,7 +27,7 @@ Modal.propTypes = {
   children: PropType.node.isRequired,
 };
 
-Modal.default = {
+Modal.defaultProps = {
   title: '',
 };
 

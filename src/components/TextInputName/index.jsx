@@ -3,8 +3,8 @@ import { TextInput } from 'react-native';
 
 const NameTextInput = ({ value, setValue }) => (
   <TextInput
-    placeholder="Board name"
-    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+    placeholder="Enter Board Name"
+    style={{ height: 40 }}
     onChangeText={setValue}
     value={value}
   />

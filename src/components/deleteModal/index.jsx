@@ -6,11 +6,12 @@ import styles from './styles';
 const DeleteModal = ({ isOpen, closeModal, remove }) => (
   <Modal
     isOpen={isOpen}
-    closeModal={closeModal}>
+    closeModal={closeModal}
+  >
     <Text style={styles.caption}>Delete Selected?</Text>
     <View style={styles.container}>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button, styles.acceptView]}
         onPress={() => {
           remove()
           closeModal()

@@ -18,6 +18,11 @@ export default StyleSheet.create({
     padding: 20,
     flex: 1,
   },
+  acceptView: {
+    borderStyle: 'solid',
+    borderRightWidth: 1,
+    borderRightColor: '#000',
+  },
   textAccept: {
     fontWeight: 'bold',
     fontSize: 20,
