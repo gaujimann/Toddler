@@ -15,7 +15,7 @@ class Lists extends React.Component {
 
     return (
       <View>
-        <Toolbar/>
+        <Toolbar />
         <Text>Hello World!</Text>
       </View>
     );
