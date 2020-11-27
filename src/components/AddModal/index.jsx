@@ -31,7 +31,10 @@ const AddModal = ({ isOpen, closeModal, addBoard }) => {
       >
         <Entypo style={styles.icon} name="camera" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={selectFromCameraRoll}>
+      <TouchableOpacity onPress={async () => {
+        const p = await selectFromCameraRoll();
+        setPhoto(p);
+      }}>
         <Entypo style={styles.icon} name="image" />
       </TouchableOpacity>
       <View style={styles.container}>
