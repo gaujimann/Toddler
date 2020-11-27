@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableHighlight, Text } from 'react-native';
 import styles from './styles';
@@ -17,6 +17,9 @@ const Toolbar = ({ onAdd, onRemove, hasSelected }) => (
       disabled={!hasSelected}
     >
       <Text style={[styles.toolbarActionText, hasSelected ? {} : { color: 'rgba(155, 155, 155, 0.5)' }]}>Delete Selected</Text>
+    </TouchableHighlight>
+    <TouchableHighlight style={styles.toolbarAction}>
+      <Text style={styles.toolbarActionText}>Edit Board</Text>
     </TouchableHighlight>
   </View>
 );
