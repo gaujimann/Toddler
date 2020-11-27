@@ -5,6 +5,7 @@ import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import AddBoardModal from '../../components/AddBoardModal';
 import DeleteModal from '../../components/deleteModal';
+import EditBoardModal from '../../components/EditBoardModal';
 import styles from './styles';
 
 class Boards extends React.Component {
@@ -86,9 +87,25 @@ class Boards extends React.Component {
     this.setState({ boards: newBoards, selectedBoards: [] });
   }
 
+  editBoard(name, photo) {
+    if (name === '' || photo === '') {
+      return;
+    }
+    const { boards, selectedBoards } = this.state;
+    const newBoards = boards.map(
+      (board) => (board.id === selectedBoards[0] ? {
+        id: board.id,
+        name,
+        thumbnailPhoto: photo,
+      } : board),
+    );
+    this.setState({ boards: [...newBoards], selectedBoards: [] });
+    console.log(newBoards)
+  }
+
   render() {
     const {
-      selectedBoards, boards, lists, isAddModelOpen, isDeleteModalOpen
+      selectedBoards, boards, lists, isAddModelOpen, isDeleteModalOpen, isEditBoardModalOpen
     } = this.state;
     const { navigation } = this.props;
     return (
@@ -96,7 +113,8 @@ class Boards extends React.Component {
         <Toolbar
           onAdd={() => this.setState({ isAddModelOpen: true })}
           onRemove={() => this.setState({ isDeleteModalOpen: true })}
-          hasSelected={selectedBoards.length > 0}
+          onEdit={() => this.setState({ isEditBoardModalOpen: true })}
+          numSelected={selectedBoards.length}
         />
         { this.displayCaption() }
         <BoardList
@@ -120,6 +138,13 @@ class Boards extends React.Component {
           isOpen={isDeleteModalOpen}
           closeModal={() => this.setState({ isDeleteModalOpen: false })}
           remove={() => this.removeBoard()}
+        />
+        <EditBoardModal
+          isOpen={isEditBoardModalOpen}
+          closeModal={() => this.setState({ isEditBoardModalOpen: false })}
+          edit={(name, photo) => this.editBoard(name, photo)}
+          currentName={selectedBoards.length === 1 ? boards.find((board) => board.id === selectedBoards[0]).name : ''}
+          currentPhoto={selectedBoards.length === 1 ? boards.find((board) => board.id === selectedBoards[0]).thumbnailPhoto : ''}
         />
       </View>
     );

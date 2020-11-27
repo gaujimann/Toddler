@@ -6,7 +6,9 @@ import styles from './styles';
 import NameTextInput from '../TextInputName';
 import { takePhoto, selectFromCameraRoll } from '../../services/imageServices';
 
-const AddBoardModal = ({ isOpen, closeModal, addBoard }) => {
+const EditBoardModal = ({
+ isOpen, closeModal, edit, currentName, currentPhoto
+}) => {
   const [value, setValue] = React.useState('');
   const [photo, setPhoto] = React.useState('');
 
@@ -15,11 +17,11 @@ const AddBoardModal = ({ isOpen, closeModal, addBoard }) => {
       isOpen={isOpen}
       closeModal={closeModal}
     >
+      <Text style={styles.captionText}>Edit Board</Text>
       <TouchableOpacity style={styles.textInput}>
         <NameTextInput
           value={value}
           setValue={setValue}
-          placeHolder="Enter Board Name"
         />
       </TouchableOpacity>
       <View style={styles.caption}>
@@ -42,7 +44,7 @@ const AddBoardModal = ({ isOpen, closeModal, addBoard }) => {
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => {
-            addBoard(value, photo);
+            edit(value, photo);
             setPhoto('');
             setValue('')
             closeModal();
@@ -51,11 +53,19 @@ const AddBoardModal = ({ isOpen, closeModal, addBoard }) => {
         >
           <Text style={styles.textAccept}>OK</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={closeModal} style={styles.button}>
+        <TouchableOpacity
+          onPress={() => {
+            setValue('');
+            setPhoto('');
+            closeModal('');
+          }}
+          style={styles.button}
+        >
           <Text style={styles.textCancel}>Cancel</Text>
         </TouchableOpacity>
       </View>
     </Modal>
-  );
-}
-export default AddBoardModal;
+  )
+};
+
+export default EditBoardModal;
