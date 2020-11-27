@@ -15,21 +15,22 @@ const AddListModal = ({ isOpen, closeModal, addList }) => {
     >
       <TouchableOpacity style={[styles.textInput, styles.bottomLine]}>
         <NameTextInput
-          name={name}
-          setName={setName}
+          value={name}
+          setValue={setName}
           placeHolder="Enter List Name"
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.textInput}>
         <NameTextInput
-          color={color}
-          setColor={setColor}
+          value={color}
+          setValue={setColor}
           placeHolder="Enter Color Code"
         />
       </TouchableOpacity>
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => {
+            console.log(name, color)
             addList(name, color);
             setName('');
             setColor('');
