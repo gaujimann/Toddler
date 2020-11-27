@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
-import AddModal from '../../components/AddModal';
+import AddBoardModal from '../../components/AddBoardModal';
 import DeleteModal from '../../components/deleteModal';
 import styles from './styles';
 
@@ -111,7 +111,7 @@ class Boards extends React.Component {
              });
           }}
         />
-        <AddModal
+        <AddBoardModal
           isOpen={isAddModelOpen}
           closeModal={() => this.setState({ isAddModelOpen: false })}
           addBoard={(name, photo) => this.addBoard(name, photo)}

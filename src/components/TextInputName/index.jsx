@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { TextInput } from 'react-native';
 
-const NameTextInput = ({ value, setValue }) => (
+const NameTextInput = ({ value, setValue, placeHolder }) => (
   <TextInput
-    placeholder="Enter Board Name"
+    placeholder={placeHolder}
     style={{ height: 40 }}
     onChangeText={setValue}
     value={value}

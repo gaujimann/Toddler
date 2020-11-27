@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import data from '../../resources/data.json';
 import Toolbar from '../../components/Toolbar';
 import ListsList from '../../components/ListsList';
+import AddListModal from '../../components/AddListModal';
 import DeleteModal from '../../components/deleteModal';
 
 class Lists extends React.Component {
@@ -32,6 +33,10 @@ class Lists extends React.Component {
     }
   }
 
+  addList() {
+    console.log("BLABLABLA");
+  }
+
   removeList() {
     const { selectedLists, lists } = this.state;
     const { setState } = this.props.navigation.state.params;
@@ -57,6 +62,11 @@ class Lists extends React.Component {
           onLongPress={(id) => this.onListLongPress(id)}
           lists={lists.filter((list) => list.boardId === boardId)}
           selectedLists={selectedLists}
+        />
+        <AddListModal
+          isOpen={isAddModelOpen}
+          closeModal={() => this.setState({ isAddModelOpen: false })}
+          addList={(name, color) => this.addList(name, color)}
         />
         <DeleteModal
           isOpen={isDeleteModalOpen}

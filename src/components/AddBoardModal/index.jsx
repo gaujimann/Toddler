@@ -6,7 +6,7 @@ import styles from './styles';
 import NameTextInput from '../TextInputName';
 import { takePhoto, selectFromCameraRoll } from '../../services/imageServices';
 
-const AddModal = ({ isOpen, closeModal, addBoard }) => {
+const AddBoardModal = ({ isOpen, closeModal, addBoard }) => {
   const [value, setValue] = React.useState('');
   const [photo, setPhoto] = React.useState('');
 
@@ -19,6 +19,7 @@ const AddModal = ({ isOpen, closeModal, addBoard }) => {
         <NameTextInput
           value={value}
           setValue={setValue}
+          placeHolder="Enter Board Name"
         />
       </TouchableOpacity>
       <View style={styles.caption}>
@@ -57,4 +58,4 @@ const AddModal = ({ isOpen, closeModal, addBoard }) => {
     </Modal>
   );
 }
-export default AddModal;
+export default AddBoardModal;
