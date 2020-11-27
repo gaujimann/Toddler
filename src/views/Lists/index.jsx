@@ -34,11 +34,7 @@ class Lists extends React.Component {
     const { selectedLists, lists, isAddListOpen, isDeleteListOpen } = this.state;
     const { boardId } = this.props.navigation.state.params;
     return (
-<<<<<<< HEAD
-      <View>
-=======
       <View style={{ flex: 1 }}>
->>>>>>> be307ab4ae601a07032ad9af8db31da08a3bc793
         <Toolbar />
         <ListsList
           onLongPress={(id) => this.onListLongPress(id)}
