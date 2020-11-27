@@ -99,7 +99,8 @@ class Boards extends React.Component {
           boards={boards}
           selectedBoards={selectedBoards}
           onPress={(id) => {
-            navigation.navigate('Lists', { id })}}
+            console.log(id);
+            navigation.navigate('Lists', { boardId: id })}}
         />
         <AddModal
           isOpen={isAddModelOpen}

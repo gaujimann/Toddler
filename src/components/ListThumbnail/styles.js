@@ -1,17 +1,23 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width: winWidth } = Dimensions.get('window');
 
 export default StyleSheet.create({
-  board: {
-    width: 115,
+  list: {
+    width: winWidth,
     height: 115,
     margin: 10,
     borderRadius: 100,
   },
-  boardName: {
-    width: 115,
+  listName: {
+    width: winWidth,
     textAlign: 'center',
-    marginLeft: 10,
-    marginRight: 10,
+    padding: 10,
+    fontSize: 24,
+    fontWeight: 'bold',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: '#000',
   },
   checkmark: {
     position: 'absolute',
