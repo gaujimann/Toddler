@@ -43,4 +43,8 @@ export default StyleSheet.create({
     paddingRight: 16,
     paddingLeft: 16,
   },
+  captionText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
 });
