@@ -19,7 +19,7 @@ const EditBoardModal = ({
   React.useEffect(() => {
     setPhoto(currentPhoto);
   }, [currentPhoto, setPhoto]);
-  
+
   return (
     <Modal
       isOpen={isOpen}
@@ -58,8 +58,9 @@ const EditBoardModal = ({
             closeModal();
           }}
           style={[styles.button, styles.acceptView]}
+          disabled={photo === '' || value === ''}
         >
-          <Text style={styles.textAccept}>OK</Text>
+          <Text style={[styles.textAccept, !(photo === '' || value === '') ? {} : { color: 'rgba(155, 155, 155, 0.5)' }]}>OK</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
