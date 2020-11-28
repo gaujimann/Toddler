@@ -97,10 +97,12 @@ class Lists extends React.Component {
                 this.setState({ selectedLists: [] })
                 updateProjects({ lists: [...newLists] })
               }}
+              currentName={selectedLists.length === 1 ? lists.find((list) => list.id === selectedLists[0]).name : ''}
+              currentColor={selectedLists.length === 1 ? lists.find((list) => list.id === selectedLists[0]).color : ''}
             />
           </View>
         )}
-    </ProjectsContext.Consumer>
+      </ProjectsContext.Consumer>
     );
   }
 }

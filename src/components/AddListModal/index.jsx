@@ -36,8 +36,9 @@ const AddListModal = ({ isOpen, closeModal, addList }) => {
             closeModal();
           }}
           style={[styles.button, styles.acceptView]}
+          disabled={color === '' || name === ''}
         >
-          <Text style={styles.textAccept}>OK</Text>
+          <Text style={[styles.textAccept, !(color === '' || name === '') ? {} : { color: 'rgba(155, 155, 155, 0.5)' }]}>OK</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={closeModal} style={styles.button}>
           <Text style={styles.textCancel}>Cancel</Text>

@@ -12,6 +12,14 @@ const EditBoardModal = ({
   const [value, setValue] = React.useState('');
   const [photo, setPhoto] = React.useState('');
 
+  React.useEffect(() => {
+    setValue(currentName);
+  }, [currentName, setValue]);
+
+  React.useEffect(() => {
+    setPhoto(currentPhoto);
+  }, [currentPhoto, setPhoto]);
+  
   return (
     <Modal
       isOpen={isOpen}

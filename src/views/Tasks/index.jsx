@@ -79,21 +79,23 @@ class Tasks extends React.Component {
             <EditTaskModal
               isOpen={isEditTaskModalOpen}
               closeModal={() => this.setState({ isEditTaskModalOpen: false})}
-              edit={(name, color) => {
-                if (name === '' || color === '') {
+              edit={(name, description) => {
+                if (name === '' || description === '') {
                   return;
                 }
                 const newTasks = tasks.map(
                   (task) => (task.id === selectedTasks[0] ? {
                     id: task.id,
                     name,
-                    color,
+                    description,
                     listId,
                   } : task),
                 );
                 this.setState({ selectedTasks: [] })
                 updateProjects({ tasks: [...newTasks] })
               }}
+              currentName={selectedTasks.length === 1 ? tasks.find((task) => task.id === selectedTasks[0]).name : ''}
+              currentDescription={selectedTasks.length === 1 ? tasks.find((task) => task.id === selectedTasks[0]).description : ''}
             />
           </View>
         )}

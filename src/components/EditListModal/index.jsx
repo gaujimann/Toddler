@@ -10,6 +10,14 @@ const EditListModal = ({
   const [name, setName] = React.useState('');
   const [color, setColor] = React.useState('');
 
+  React.useEffect(() => {
+    setName(currentName);
+  }, [currentName, setName]);
+
+  React.useEffect(() => {
+    setColor(currentColor);
+  }, [currentColor, setColor]);
+  
   return (
     <Modal
       isOpen={isOpen}

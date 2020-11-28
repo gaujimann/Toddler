@@ -1,14 +1,22 @@
-import React from 'react';
+  import React from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
 import Modal from '../Modal';
 import NameTextInput from '../TextInputName';
 import styles from './styles';
 
 const EditTaskModal = ({
- isOpen, closeModal, edit, currentName, currentColor
+ isOpen, closeModal, edit, currentName, currentDescription
 }) => {
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
+
+  React.useEffect(() => {
+    setName(currentName);
+  }, [currentName, setName]);
+
+  React.useEffect(() => {
+    setDescription(currentDescription);
+  }, [currentDescription, setDescription]);
 
   return (
     <Modal
