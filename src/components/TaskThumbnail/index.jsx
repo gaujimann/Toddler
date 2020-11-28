@@ -28,6 +28,10 @@ const TaskThumbnail = ({
   </TouchableOpacity>
 );
 
+TaskThumbnail.defaultProps = {
+  isFinished: false,
+}
+
 TaskThumbnail.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
@@ -35,7 +39,7 @@ TaskThumbnail.propTypes = {
   onLongPress: PropTypes.func.isRequired,
   isSelected: PropTypes.bool.isRequired,
   onPress: PropTypes.func.isRequired,
-  isFinished: PropTypes.bool.isRequired,
+  isFinished: PropTypes.bool,
   onToggleCheck: PropTypes.func.isRequired,
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import data from '../../resources/data.json';
 import Toolbar from '../../components/Toolbar';
 import TasksList from '../../components/TasksList';
@@ -152,5 +153,11 @@ class Tasks extends React.Component {
     );
   }
 }
+
+Tasks.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Tasks;

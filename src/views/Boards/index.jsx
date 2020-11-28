@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
 import AddBoardModal from '../../components/AddBoardModal';
@@ -127,6 +128,12 @@ class Boards extends React.Component {
       </ProjectsContext.Consumer>
     );
   }
-}
+};
+
+Boards.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Boards;

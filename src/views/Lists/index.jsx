@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import data from '../../resources/data.json';
 import Toolbar from '../../components/Toolbar';
@@ -128,6 +129,12 @@ class Lists extends React.Component {
       </ProjectsContext.Consumer>
     );
   }
-}
+};
+
+Lists.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Lists;
