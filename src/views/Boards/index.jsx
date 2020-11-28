@@ -65,7 +65,7 @@ class Boards extends React.Component {
     return (
       <ProjectsContext.Consumer>
         {({ projects: { boards, nextBoardId }, updateProjects }) => (
-          <View style={styles.container}>
+          <View style={{ flex: 1 }}>
             <Toolbar
               onAdd={() => this.setState({ isAddModelOpen: true })}
               onRemove={() => this.setState({ isDeleteModalOpen: true })}

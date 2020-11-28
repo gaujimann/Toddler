@@ -35,8 +35,8 @@ export default StyleSheet.create({
   },
   checkmark: {
     position: 'absolute',
-    bottom: 12,
-    left: 15,
+    bottom: 4,
+    left: 70,
     fontSize: 16,
   }
 });

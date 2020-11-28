@@ -10,21 +10,17 @@ import styles from './styles';
 const TaskThumbnail = ({
   id, name, description, onLongPress, onPress, isSelected, isFinished, onToggleCheck
 }) => (
-  <TouchableOpacity activeOpacity={0.8}
+  <TouchableOpacity
+    activeOpacity={0.8}
     onPress={() => onPress(id)}
     onLongPress={() => onLongPress(id)}
     >
-    {
-      isSelected
-        ? <AntDesign name="checkcircleo" style={styles.checkmark} />
-        : <></>
-    }
     <View style={styles.container}>
       <CheckBox
         checked={isFinished}
         onPress={onToggleCheck}
       />
-      <View style={[styles.task, { opacity: isSelected ? 0.5 : 1 }]}>
+      <View style={[styles.task, { backgroundColor: isSelected ? 'rgb(155, 155, 155)' : '#FFF' }]}>
         <Text style={styles.taskName}>{name}</Text>
         <Text style={styles.taskDescription}>{description}</Text>
       </View>

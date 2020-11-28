@@ -15,6 +15,15 @@ const AddBoardModal = ({ isOpen, closeModal, addBoard }) => {
       isOpen={isOpen}
       closeModal={closeModal}
     >
+      <View style={{
+        borderStyle: 'solid',
+        borderBottomColor: '#000',
+        borderBottomWidth: 1,
+        paddingHorizontal: 10,
+      }}
+      >
+        <Text style={styles.captionText}>Add Board</Text>
+      </View>
       <TouchableOpacity style={styles.textInput}>
         <NameTextInput
           value={value}

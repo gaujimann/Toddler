@@ -13,6 +13,15 @@ const AddListModal = ({ isOpen, closeModal, addList }) => {
       isOpen={isOpen}
       closeModal={closeModal}
     >
+      <View style={{
+        borderStyle: 'solid',
+        borderBottomColor: '#000',
+        borderBottomWidth: 1,
+        paddingHorizontal: 10,
+      }}
+      >
+        <Text style={styles.captionText}>Add List</Text>
+      </View>
       <TouchableOpacity style={[styles.textInput, styles.bottomLine]}>
         <NameTextInput
           value={name}

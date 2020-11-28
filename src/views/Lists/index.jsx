@@ -31,6 +31,32 @@ class Lists extends React.Component {
     }
   }
 
+  displayCaption() {
+    const { selectedLists } = this.state;
+    if (selectedLists.length === 0) { return null; }
+
+    let itemCaption = 'lists';
+    if (selectedLists.length === 1) {
+      itemCaption = 'list';
+    }
+    return (
+      <Text style={{
+        fontWeight: 'bold',
+        fontSize: 16,
+        marginLeft: 10,
+        marginTop: 20,
+        marginBottom: 5,
+      }}
+      >
+        {selectedLists.length}
+        {' '}
+        {itemCaption}
+        {' '}
+        selected
+      </Text>
+    );
+  }
+
   render() {
     const { selectedLists, isAddModelOpen, isDeleteModalOpen, isEditListModalOpen } = this.state;
     const { boardId } = this.props.navigation.state.params;
@@ -45,6 +71,7 @@ class Lists extends React.Component {
               onEdit={() => this.setState({ isEditListModalOpen: true })}
               numSelected={selectedLists.length}
             />
+            {this.displayCaption()}
             <ListsList
               onLongPress={(id) => this.onListLongPress(id)}
               lists={lists.filter((list) => list.boardId === boardId)}

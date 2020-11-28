@@ -30,7 +30,7 @@ const EditTaskModal = ({
         paddingHorizontal: 10,
       }}
       >
-        <Text style={styles.captionText}>Edit List</Text>
+        <Text style={styles.captionText}>Edit Task</Text>
       </View>
       <TouchableOpacity style={[styles.textInput, styles.bottomLine]}>
         <NameTextInput
