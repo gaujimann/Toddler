@@ -7,8 +7,18 @@ import Tasks from '../views/Tasks';
 
 const StackNavigator = createStackNavigator({
   Boards,
-  Lists,
-  Tasks,
+  Lists: {
+    screen: Lists,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.boardName}`
+    })
+  },
+  Tasks: {
+    screen: Tasks,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.listName}`
+    })
+  },
 });
 
 export default createAppContainer(StackNavigator);

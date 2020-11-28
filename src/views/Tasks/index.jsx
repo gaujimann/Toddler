@@ -69,13 +69,13 @@ class Tasks extends React.Component {
           <View style={{ flex: 1 }}>
             <Toolbar
               onAdd={() => this.setState({ isAddModelOpen: true })}
-              onRemove={() => this.setState({ isDeleteModalOpen: true})}
+              onRemove={() => this.setState({ isDeleteModalOpen: true })}
               onEdit={() => this.setState({ isEditTaskModalOpen: true })}
               numSelected={selectedTasks.length}
             />
             { this.displayCaption() }
             <TasksList
-              onPress={(id) => this.setState({ isTransferTaskModalOpen: true , taskToMove: id })}
+              onPress={(id) => this.setState({ isTransferTaskModalOpen: true, taskToMove: id })}
               onLongPress={(id) => this.onTaskLongPress(id)}
               tasks={tasks.filter((task) => task.listId === listId)}
               selectedTasks={selectedTasks}

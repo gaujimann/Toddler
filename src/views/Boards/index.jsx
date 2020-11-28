@@ -5,7 +5,6 @@ import BoardList from '../../components/BoardList';
 import AddBoardModal from '../../components/AddBoardModal';
 import DeleteModal from '../../components/deleteModal';
 import EditBoardModal from '../../components/EditBoardModal';
-import styles from './styles';
 import ProjectsContext from '../../services/PrejectsContext';
 
 class Boards extends React.Component {
@@ -77,8 +76,8 @@ class Boards extends React.Component {
               onLongPress={(id) => this.onBoardLongPress(id)}
               boards={boards}
               selectedBoards={selectedBoards}
-              onPress={(id) => {
-                navigation.navigate('Lists', { boardId: id });
+              onPress={(id, name) => {
+                navigation.navigate('Lists', { boardId: id, boardName: name });
               }}
             />
             <AddBoardModal

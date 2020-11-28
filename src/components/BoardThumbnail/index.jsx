@@ -9,7 +9,11 @@ import styles from './styles';
 const BoardThumbnail = ({
   id, name, thumbnailPhoto, onLongPress, onPress, isSelected,
 }) => (
-  <TouchableOpacity activeOpacity={0.8} onLongPress={() => onLongPress(id)} onPress={() => onPress(id)}>
+  <TouchableOpacity
+    activeOpacity={0.8}
+    onLongPress={() => onLongPress(id)}
+    onPress={() => onPress(id, name)}
+  >
     {
       isSelected
         ? <AntDesign name="checkcircleo" style={styles.checkmark} />
