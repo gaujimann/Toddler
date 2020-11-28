@@ -27,8 +27,10 @@ const ListThumbnail = ({
 
 ListThumbnail.propTypes = {
   id: PropTypes.number.isRequired,
+  color: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onLongPress: PropTypes.func.isRequired,
+  onPress: PropTypes.func.isRequired,
   isSelected: PropTypes.bool.isRequired,
 };
 

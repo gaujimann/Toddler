@@ -34,6 +34,9 @@ TaskThumbnail.propTypes = {
   description: PropTypes.string.isRequired,
   onLongPress: PropTypes.func.isRequired,
   isSelected: PropTypes.bool.isRequired,
+  onPress: PropTypes.func.isRequired,
+  isFinished: PropTypes.bool.isRequired,
+  onToggleCheck: PropTypes.func.isRequired,
 };
 
 export default TaskThumbnail;

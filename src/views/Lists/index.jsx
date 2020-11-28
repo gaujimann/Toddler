@@ -109,9 +109,6 @@ class Lists extends React.Component {
               isOpen={isEditListModalOpen}
               closeModal={() => this.setState({ isEditListModalOpen: false})}
               edit={(name, color) => {
-                if (name === '' || color === '') {
-                  return;
-                }
                 const newLists = lists.map(
                   (list) => (list.id === selectedLists[0] ? {
                     id: list.id,

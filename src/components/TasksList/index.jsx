@@ -26,4 +26,17 @@ const TasksList = ({tasks, onLongPress, selectedTasks, toggleFinished, onPress }
   </View>
 )
 
+TasksList.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    listId: PropTypes.number.isRequired
+  })).isRequired,
+  onLongPress: PropTypes.func.isRequired,
+  selectedTasks: PropTypes.arrayOf(PropTypes.number).isRequired,
+  toggleFinished: PropTypes.func.isRequired,
+  onPress: PropTypes.func.isRequired,
+};
+
 export default TasksList;

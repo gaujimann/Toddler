@@ -4,7 +4,7 @@ import { View, FlatList} from 'react-native';
 import BoardThumbnail from '../BoardThumbnail';
 
 const BoardList = ({
-  boards, onLongPress, onPress, selectedBoards 
+  boards, onLongPress, onPress, selectedBoards
 }) => (
   <View style={{ flex: 1 }}>
     <FlatList

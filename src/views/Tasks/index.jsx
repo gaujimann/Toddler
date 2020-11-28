@@ -117,9 +117,6 @@ class Tasks extends React.Component {
               isOpen={isEditTaskModalOpen}
               closeModal={() => this.setState({ isEditTaskModalOpen: false})}
               edit={(name, description) => {
-                if (name === '' || description === '') {
-                  return;
-                }
                 const newTasks = tasks.map(
                   (task) => (task.id === selectedTasks[0] ? {
                     ...task,

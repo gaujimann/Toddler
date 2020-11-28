@@ -4,7 +4,9 @@ import NativeModal from 'react-native-modal';
 import { View, Text } from 'react-native';
 import styles from './styles';
 
-const Modal = ({ isOpen, closeModal, title, children }) => (
+const Modal = ({
+ isOpen, closeModal, title, children
+}) => (
   <NativeModal
     isVisible={isOpen}
     hasbackdrop

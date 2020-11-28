@@ -84,9 +84,6 @@ class Boards extends React.Component {
               isOpen={isAddModelOpen}
               closeModal={() => this.setState({ isAddModelOpen: false })}
               addBoard={(name, photo) => {
-                if (name === '' || photo === '') {
-                  return;
-                }
                 updateProjects({
                   boards: [...boards, {
                     id: nextBoardId,
@@ -112,9 +109,6 @@ class Boards extends React.Component {
               isOpen={isEditBoardModalOpen}
               closeModal={() => this.setState({ isEditBoardModalOpen: false })}
               edit={(name, photo) => {
-                if (name === '' || photo === '') {
-                  return;
-                }
                 const newBoards = boards.map(
                   (board) => (board.id === selectedBoards[0] ? {
                     id: board.id,
