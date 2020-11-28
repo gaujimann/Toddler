@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   Text, View, TouchableOpacity,
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
 const ListThumbnail = ({
@@ -14,11 +13,6 @@ const ListThumbnail = ({
     onLongPress={() => onLongPress(id)}
     onPress={() => onPress(id, name)}
   >
-    {
-      isSelected
-        ? <AntDesign name="checkcircleo" style={styles.checkmark} />
-        : <></>
-    }
     <View style={[{ opacity: isSelected ? 0.5 : 1 }, { backgroundColor: color }]}>
       <Text style={styles.listName}>{name}</Text>
     </View>
