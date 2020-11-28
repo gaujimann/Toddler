@@ -17,4 +17,14 @@ export default StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
   },
+  toolbarPlus: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFFFFF'
+  },
+  toolbarTrash: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#FFFFFF'
+  }
 })

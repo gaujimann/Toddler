@@ -1,4 +1,5 @@
 import React from 'react';
+import { CheckBox } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import {
   Text, View, TouchableOpacity,
@@ -7,16 +8,23 @@ import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
 const TaskThumbnail = ({
-  id, name, description, onLongPress, isSelected,
+  id, name, description, onLongPress, isSelected, isFinished, onToggleCheck
 }) => (
-  <TouchableOpacity activeOpacity={0.8} onLongPress={() => onLongPress(id)} onPress={() => onPress(id)}>
+  <TouchableOpacity activeOpacity={0.8} onLongPress={() => onLongPress(id)}>
     {
       isSelected
         ? <AntDesign name="checkcircleo" style={styles.checkmark} />
         : <></>
     }
-    <View style={{ opacity: isSelected ? 0.5 : 1 }}>
-      <Text style={styles.taskName}>{name}</Text>
+    <View style={styles.container}>
+      <CheckBox
+        checked={isFinished}
+        onPress={onToggleCheck}
+      />
+      <View style={[styles.task, { opacity: isSelected ? 0.5 : 1 }]}>
+        <Text style={styles.taskName}>{name}</Text>
+        <Text style={styles.taskDescription}>{description}</Text>
+      </View>
     </View>
   </TouchableOpacity>
 );

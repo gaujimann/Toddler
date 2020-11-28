@@ -50,13 +50,21 @@ class Tasks extends React.Component {
               onLongPress={(id) => this.onTaskLongPress(id)}
               tasks={tasks.filter((task) => task.listId === listId)}
               selectedTasks={selectedTasks}
+              toggleFinished={(taskId) => {
+                const newTasks = tasks.map(
+                  (task) => (task.id === taskId ? {
+                    ...task, isFinished: !task.isFinished
+                  } : task),
+                );
+                updateProjects({ tasks: [...newTasks] });
+              }}
             />
             <AddTaskModal
               isOpen={isAddModelOpen}
               closeModal={() => this.setState({ isAddModelOpen: false })}
               addTask={(name, description) => updateProjects({
                 tasks: [...tasks, {
-                  is: nextTaskId,
+                  id: nextTaskId,
                   name,
                   description,
                   listId,
@@ -85,7 +93,7 @@ class Tasks extends React.Component {
                 }
                 const newTasks = tasks.map(
                   (task) => (task.id === selectedTasks[0] ? {
-                    id: task.id,
+                    ...task,
                     name,
                     description,
                     listId,

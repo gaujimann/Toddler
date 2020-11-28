@@ -1,30 +1,31 @@
-  import React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
+import { AntDesign, EvilIcons } from '@expo/vector-icons';
 import styles from './styles';
 
 const Toolbar = ({ onAdd, onRemove, onEdit, numSelected }) => (
   <View styleName="horizontal" style={styles.toolbar}>
-    <TouchableHighlight
+    <TouchableOpacity
       style={styles.toolbarAction}
       onPress={onAdd}
     >
-      <Text style={styles.toolbarActionText}>Add Board</Text>
-    </TouchableHighlight>
-    <TouchableHighlight
+      <AntDesign name="plus" style={styles.toolbarPlus} />
+    </TouchableOpacity>
+    <TouchableOpacity
       style={styles.toolbarAction}
       onPress={onEdit}
       disabled={numSelected !== 1}
     >
       <Text style={[styles.toolbarActionText, numSelected === 1 ? {} : { color: 'rgba(155, 155, 155, 0.5)' }]}>Edit</Text>
-    </TouchableHighlight>
-    <TouchableHighlight
+    </TouchableOpacity>
+    <TouchableOpacity
       style={styles.toolbarAction}
       onPress={onRemove}
       disabled={numSelected === 0}
     >
-      <Text style={[styles.toolbarActionText, numSelected > 0 ? {} : { color: 'rgba(155, 155, 155, 0.5)' }]}>Delete</Text>
-    </TouchableHighlight>
+      <EvilIcons name="trash" style={[styles.toolbarTrash, numSelected > 0 ? {} : { color: 'rgba(155, 155, 155, 0.5)' }]} />
+    </TouchableOpacity>
   </View>
 );
 
