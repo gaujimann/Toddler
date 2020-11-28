@@ -8,9 +8,12 @@ import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
 const TaskThumbnail = ({
-  id, name, description, onLongPress, isSelected, isFinished, onToggleCheck
+  id, name, description, onLongPress, onPress, isSelected, isFinished, onToggleCheck
 }) => (
-  <TouchableOpacity activeOpacity={0.8} onLongPress={() => onLongPress(id)}>
+  <TouchableOpacity activeOpacity={0.8}
+    onPress={() => onPress(id)}
+    onLongPress={() => onLongPress(id)}
+    >
     {
       isSelected
         ? <AntDesign name="checkcircleo" style={styles.checkmark} />

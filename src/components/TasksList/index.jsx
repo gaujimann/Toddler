@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, FlatList} from 'react-native';
 import TaskThumbnail from '../TaskThumbnail';
 
-const TasksList = ({tasks, onLongPress, selectedTasks, toggleFinished }) => (
+const TasksList = ({tasks, onLongPress, selectedTasks, toggleFinished, onPress }) => (
   <View style={{ flex: 1 }}>
     <FlatList
       numColumns={1}
@@ -14,6 +14,7 @@ const TasksList = ({tasks, onLongPress, selectedTasks, toggleFinished }) => (
           id={id}
           name={name}
           description={description}
+          onPress={onPress}
           onLongPress={onLongPress}
           isSelected={selectedTasks.indexOf(id) !== -1}
           isFinished={isFinished}

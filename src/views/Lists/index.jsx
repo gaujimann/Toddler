@@ -50,7 +50,6 @@ class Lists extends React.Component {
               lists={lists.filter((list) => list.boardId === boardId)}
               selectedLists={selectedLists}
               onPress={(id) => {
-                console.log("Blurg")
                 navigation.navigate('Tasks', { listId: id });
               }}
             />

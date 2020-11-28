@@ -7,6 +7,7 @@ import AddTaskModal from '../../components/AddTaskModal';
 import DeleteModal from '../../components/deleteModal';
 import ProjectsContext from '../../services/PrejectsContext';
 import EditTaskModal from '../../components/EditTaskModal';
+import TransferTaskModal from '../../components/TransferTaskModal';
 
 class Tasks extends React.Component {
   constructor(props) {
@@ -33,12 +34,12 @@ class Tasks extends React.Component {
 
   render() {
     const {
-      selectedTasks, isAddModelOpen, isDeleteModalOpen, isEditTaskModalOpen
+    selectedTasks, isAddModelOpen, isDeleteModalOpen, isEditTaskModalOpen, isTransferTaskModalOpen, taskToMove
     } = this.state;
     const { listId } = this.props.navigation.state.params;
     return (
       <ProjectsContext.Consumer>
-        {({ projects: { tasks, nextTaskId }, updateProjects }) => (
+        {({ projects: { lists, tasks, nextTaskId }, updateProjects }) => (
           <View style={{ flex: 1 }}>
             <Toolbar
               onAdd={() => this.setState({ isAddModelOpen: true })}
@@ -47,6 +48,7 @@ class Tasks extends React.Component {
               numSelected={selectedTasks.length}
             />
             <TasksList
+              onPress={(id) => this.setState({ isTransferTaskModalOpen: true , taskToMove: id })}
               onLongPress={(id) => this.onTaskLongPress(id)}
               tasks={tasks.filter((task) => task.listId === listId)}
               selectedTasks={selectedTasks}
@@ -104,6 +106,21 @@ class Tasks extends React.Component {
               }}
               currentName={selectedTasks.length === 1 ? tasks.find((task) => task.id === selectedTasks[0]).name : ''}
               currentDescription={selectedTasks.length === 1 ? tasks.find((task) => task.id === selectedTasks[0]).description : ''}
+            />
+            <TransferTaskModal
+              isOpen={isTransferTaskModalOpen}
+              closeModal={() => this.setState({ isTransferTaskModalOpen: false })}
+              lists={lists}
+              onPress={(selectedListId) => {
+                const newTasks = tasks.map(
+                  (task) => (task.id === taskToMove ? {
+                    ...task,
+                    listId: selectedListId,
+                  } : task),
+                );
+                this.setState({ isTransferTaskModalOpen: false, taskToMove: undefined })
+                updateProjects({ tasks: [...newTasks] })
+              }}
             />
           </View>
         )}
