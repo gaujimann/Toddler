@@ -76,8 +76,8 @@ class Lists extends React.Component {
               onLongPress={(id) => this.onListLongPress(id)}
               lists={lists.filter((list) => list.boardId === boardId)}
               selectedLists={selectedLists}
-              onPress={(id) => {
-                navigation.navigate('Tasks', { listId: id });
+              onPress={(id, name) => {
+                navigation.navigate('Tasks', { listId: id, listName: name });
               }}
             />
             <AddListModal
