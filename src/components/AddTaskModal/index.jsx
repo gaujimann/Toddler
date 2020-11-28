@@ -36,8 +36,9 @@ const AddTaskModal = ({ isOpen, closeModal, addTask }) => {
             closeModal();
           }}
           style={[styles.button, styles.acceptView]}
+          disabled={description === '' || name === ''}
         >
-          <Text style={styles.textAccept}>OK</Text>
+          <Text style={[styles.textAccept, !(description === '' || name === '') ? {} : { color: 'rgba(155, 155, 155, 0.5)' }]}>OK</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={closeModal} style={styles.button}>
           <Text style={styles.textCancel}>Cancel</Text>

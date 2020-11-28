@@ -102,6 +102,8 @@ class Tasks extends React.Component {
                 this.setState({ selectedTasks: [] })
                 updateProjects({ tasks: [...newTasks] })
               }}
+              currentName={selectedTasks.length === 1 ? tasks.find((task) => task.id === selectedTasks[0]).name : ''}
+              currentDescription={selectedTasks.length === 1 ? tasks.find((task) => task.id === selectedTasks[0]).description : ''}
             />
           </View>
         )}
