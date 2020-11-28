@@ -4,7 +4,7 @@ const { width: winWidth } = Dimensions.get('window');
 
 export default StyleSheet.create({
   listName: {
-    width: winWidth,
+    flex: 1,
     textAlign: 'center',
     padding: 10,
     fontSize: 24,

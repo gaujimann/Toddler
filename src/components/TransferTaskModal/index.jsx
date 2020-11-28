@@ -4,19 +4,39 @@ import Modal from '../Modal';
 import styles from './styles';
 import ListsList from '../ListsList';
 
-const TransferTaskModal = ({ isOpen, closeModal, lists, onPress }) => (
-  <Modal
-    isOpen={isOpen}
-    closeModal={closeModal}
-  >
-    <Text>Move Task</Text>
-    <ListsList
-      onLongPress={() => {}}
-      lists={lists}
-      selectedLists={[]}
-      onPress={onPress}
-    />
-  </Modal>
-)
+const TransferTaskModal = ({ isOpen, closeModal, lists, onPress }) => {
+  const [selected, setSelected] = React.useState({ id: 0, name: '' });
+  return (
+    <Modal
+      isOpen={isOpen}
+      closeModal={closeModal}
+    >
+      <View style={styles.caption}>
+        <Text style={styles.captionText}>Move Task</Text>
+      </View>
+      <ListsList
+        onLongPress={() => {}}
+        lists={lists}
+        selectedLists={[selected.id]}
+        onPress={(id, name) => setSelected({ id, name })}
+      />
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => {
+            onPress(selected.id, selected.name);
+            closeModal();
+          }}
+          style={[styles.button, styles.acceptView]}
+          disabled={selected.id === 0}
+        >
+          <Text style={[styles.textAccept, selected.id === 0 ? { color: 'rgba(155, 155, 155, 0.5)' } : {}]}>OK</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={closeModal} style={styles.button}>
+          <Text style={styles.textCancel}>Cancel</Text>
+        </TouchableOpacity>
+      </View>
+    </Modal>
+  )
+}
 
 export default TransferTaskModal;

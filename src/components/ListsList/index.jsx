@@ -4,7 +4,7 @@ import { View, FlatList} from 'react-native';
 import ListThumbnail from '../ListThumbnail';
 
 const ListsList = ({lists, onLongPress, onPress, selectedLists }) => (
-  <View style={{ flex: 1 }}>
+  <View style={{ flex: 1, marginBottom: 16 }}>
     <FlatList
       numColumns={1}
       data={lists}
