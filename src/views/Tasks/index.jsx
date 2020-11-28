@@ -31,6 +31,32 @@ class Tasks extends React.Component {
     }
   }
 
+  displayCaption() {
+    const { selectedTasks } = this.state;
+    if (selectedTasks.length === 0) { return null; }
+
+    let itemCaption = 'boards';
+    if (selectedTasks.length === 1) {
+      itemCaption = 'board';
+    }
+    return (
+      <Text style={{
+        fontWeight: 'bold',
+        fontSize: 16,
+        marginLeft: 10,
+        marginTop: 20,
+        marginBottom: 5,
+      }}
+      >
+        {selectedTasks.length}
+        {' '}
+        {itemCaption}
+        {' '}
+        selected
+      </Text>
+    );
+  }
+
   render() {
     const {
       selectedTasks, isAddModelOpen, isDeleteModalOpen, isEditTaskModalOpen
@@ -46,6 +72,7 @@ class Tasks extends React.Component {
               onEdit={() => this.setState({ isEditTaskModalOpen: true })}
               numSelected={selectedTasks.length}
             />
+            { this.displayCaption() }
             <TasksList
               onLongPress={(id) => this.onTaskLongPress(id)}
               tasks={tasks.filter((task) => task.listId === listId)}
