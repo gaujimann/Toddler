@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, View } from 'react-native';
 import Modal from '../Modal';
 import NameTextInput from '../TextInputName';
@@ -63,6 +64,18 @@ const EditListModal = ({
       </View>
     </Modal>
   )
+};
+
+EditListModal.defaultProps = {
+  isOpen: false,
+};
+
+EditListModal.propTypes = {
+  isOpen: PropTypes.bool,
+  closeModal: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
+  currentName: PropTypes.string.isRequired,
+  currentColor: PropTypes.string.isRequired,
 }
 
 export default EditListModal;

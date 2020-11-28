@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { View, FlatList} from 'react-native';
 import BoardThumbnail from '../BoardThumbnail';
 
-const BoardList = ({ boards, onLongPress, onPress, selectedBoards }) => (
+const BoardList = ({
+  boards, onLongPress, onPress, selectedBoards 
+}) => (
   <View style={{ flex: 1 }}>
     <FlatList
       numColumns={3}
@@ -32,6 +34,7 @@ BoardList.propTypes = {
   })).isRequired,
   onLongPress: PropTypes.func.isRequired,
   selectedBoards: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
 export default BoardList;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, View } from 'react-native';
 import Modal from '../Modal';
 import styles from './styles';
@@ -25,5 +26,15 @@ const DeleteModal = ({ isOpen, closeModal, remove }) => (
     </View>
   </Modal>
 );
+
+DeleteModal.defaultProps = {
+  isOpen: false,
+}
+
+DeleteModal.propTypes = {
+  isOpen: PropTypes.bool,
+  closeModal: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+};
 
 export default DeleteModal;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, View } from 'react-native';
 import Modal from '../Modal';
 import NameTextInput from '../TextInputName';
@@ -55,6 +56,16 @@ const AddListModal = ({ isOpen, closeModal, addList }) => {
       </View>
     </Modal>
   )
+};
+
+AddListModal.defaultProps = {
+  isOpen: false,
+}
+
+AddListModal.propTypes = {
+  isOpen: PropTypes.bool,
+  closeModal: PropTypes.func.isRequired,
+  addList: PropTypes.func.isRequired,
 }
 
 export default AddListModal;

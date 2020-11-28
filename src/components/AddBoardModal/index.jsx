@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Entypo } from '@expo/vector-icons';
 import { TouchableOpacity, Text, View } from 'react-native';
 import Modal from '../Modal';
@@ -74,5 +75,16 @@ const AddBoardModal = ({ isOpen, closeModal, addBoard }) => {
       </View>
     </Modal>
   );
-}
+};
+
+AddBoardModal.defaultProps = {
+  isOpen: false,
+};
+
+AddBoardModal.propTypes = {
+  isOpen: PropTypes.bool,
+  closeModal: PropTypes.func.isRequired,
+  addBoard: PropTypes.func.isRequired,
+};
+
 export default AddBoardModal;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Entypo } from '@expo/vector-icons';
 import { TouchableOpacity, Text, View } from 'react-native';
 import Modal from '../Modal';
@@ -7,7 +8,7 @@ import NameTextInput from '../TextInputName';
 import { takePhoto, selectFromCameraRoll } from '../../services/imageServices';
 
 const EditBoardModal = ({
- isOpen, closeModal, edit, currentName, currentPhoto
+  isOpen, closeModal, edit, currentName, currentPhoto
 }) => {
   const [value, setValue] = React.useState('');
   const [photo, setPhoto] = React.useState('');
@@ -76,5 +77,15 @@ const EditBoardModal = ({
     </Modal>
   )
 };
+EditBoardModal.defaultProps = {
+  isOpen: false,
+}
+EditBoardModal.propTypes = {
+  isOpen: PropTypes.bool,
+  closeModal: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
+  currentName: PropTypes.string.isRequired,
+  currentPhoto: PropTypes.string.isRequired,
+}
 
 export default EditBoardModal;

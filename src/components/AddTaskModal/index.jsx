@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, View } from 'react-native';
 import Modal from '../Modal';
 import NameTextInput from '../TextInputName';
@@ -55,6 +56,16 @@ const AddTaskModal = ({ isOpen, closeModal, addTask }) => {
       </View>
     </Modal>
   )
+};
+
+AddTaskModal.defaultProps = {
+  isOpen: false,
+};
+
+AddTaskModal.propTypes = {
+  isOpen: PropTypes.bool,
+  closeModal: PropTypes.func.isRequired,
+  addTask: PropTypes.func.isRequired,
 }
 
 export default AddTaskModal;

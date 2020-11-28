@@ -31,6 +31,7 @@ BoardThumbnail.propTypes = {
   name: PropTypes.string.isRequired,
   thumbnailPhoto: PropTypes.string.isRequired,
   onLongPress: PropTypes.func.isRequired,
+  onPress: PropTypes.func.isRequired,
   isSelected: PropTypes.bool.isRequired,
 };
 
