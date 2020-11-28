@@ -86,7 +86,7 @@ class Lists extends React.Component {
               closeModal={() => this.setState({ isAddModelOpen: false })}
               addList={(name, color) => updateProjects({
                 lists: [...lists, {
-                  is: nextListId,
+                  id: nextListId,
                   name,
                   color,
                   boardId,
